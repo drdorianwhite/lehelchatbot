@@ -1,60 +1,67 @@
+
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <div class="brand">
+        <img src="src/assets/logo.png" width="100" alt="Vue logo">  
+
+        <div class="great-question">
+          <h3>{{ question }}<span>?</span></h3>
+          <a href="#comment" class="btn-primary">Comment</a>
+        </div>
+
+        <div class="comment-list">
+        <span v-show="loading" class="spinner"></span>
+          <ul>
+              <comment v-for="comment in comments" :comment="comment" :key="comment.id"></comment>
+          </ul>
+        </div>
+
+        <comment-form v-on:commented="updateComment"></comment-form>
+    </div>
   </div>
 </template>
 
 <script>
+
+import Comment from './Comment.vue'
+import CommentForm from './CommentForm.vue'
+
 export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+
+    data () {
+      return {
+        question: 'What you think about Vue.js',
+        comments: [],
+        loading: false
+      }
+    },
+
+    components: {
+      Comment,
+      CommentForm
+    },
+
+    created () {
+        console.log("creating app component");
+        this.loading = true;
+
+        // Fetch the comments 
+        this.$http.get('http://localhost:3434').then((response) => {
+            // success callback
+            this.comments = response.data;
+            this.loading = false;
+        }, (response) => {
+            // error callback
+            console.error(response);
+            this.loading = false;
+        });
+    },
+
+    methods: {
+      updateComment (comment) {
+        this.comments.push(comment);
+      } 
     }
-  }
+
 }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>
