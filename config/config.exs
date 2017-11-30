@@ -2,6 +2,13 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :lehelchatbot, Lehelchatbot.Endpoint,
+http: [port: 4001],
+debug_errors: true,
+code_reloader: true,
+check_origin: false,
+watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
+                  cd: Path.expand("../", __DIR__)]]
 
 
 
@@ -14,7 +21,7 @@ config :lehelchatbot, Lehelchatbot.Repo,
 
 config :lehelchatbot, ecto_repos: [Lehelchatbot.Repo]
 
-
+config :phoenix, :stacktrace_depth, 20
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,

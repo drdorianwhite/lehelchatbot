@@ -6,4 +6,9 @@ defmodule Lehelchatbot.CommentController do
   
       json conn, users
     end
+
+    def show(conn, %{"id" => id}) do
+        
+    end
+     
 end

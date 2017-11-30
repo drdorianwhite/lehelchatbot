@@ -1,11 +1,10 @@
 defmodule Lehelchatbot.Comments do
-    use Ecto.Model
+    use Lehelchatbot.Web, :model
   
     schema "comments"  do
-      field :comment_id, :integer
       field :username, :string
       field :message, :string
-      timestamps
+      timestamps()
     end
 end
 
