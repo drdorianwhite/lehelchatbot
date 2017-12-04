@@ -1,6 +1,10 @@
 //update..
 //install postgres
 //run setup script
+//install postgresql-contrib
+// sudo -u postgres psql postgres
+//cd /usr/share/postgresql/9.6/contrib/
+//psql -U postgres -d lehelchatbot -f pgcrypto.sql
 //restart pg service
 //install phoenix
 //install git

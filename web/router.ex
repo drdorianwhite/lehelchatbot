@@ -29,7 +29,7 @@ defmodule Lehelchatbot.Router do
     get "/comments", CommentController, :index
     get "/comments/:id", CommentController, :show
 
-    post "/comments/dialogflow", DialogflowControler, :response
+    post "/comments/dialogflow", CommentController, :response
 
     
 

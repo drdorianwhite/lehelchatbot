@@ -22,7 +22,7 @@ defmodule Lehelchatbot.UserController do
         case User.create(changeset, Lehelchatbot.Repo) do
             {:ok, user} ->
                 conn    
-                |> Lehelchatbat.Auth.login(user)
+                |> Lehelchatbat.Auth.authenticate(user)
                 |> put_flash(:info, "#{user.username} created!")
                 |> redirect(to: user_path(conn, :show, user))
             {:error, changeset} ->
