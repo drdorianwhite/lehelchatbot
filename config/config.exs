@@ -7,6 +7,7 @@ http: [port: 4001],
 debug_errors: true,
 code_reloader: true,
 check_origin: false,
+secret_key_base: "SuPerseCret_aBraCadabrASuPerseCret_aBraCadabrASuPerseCret_aBraCadabrASuPerseCret_aBraCadabrA",
 watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                   cd: Path.expand("../", __DIR__)]]
 
@@ -19,9 +20,29 @@ config :lehelchatbot, Lehelchatbot.Repo,
   password: "postgres",
   hostname: "localhost"
 
+  config :guardian, Guardian,
+  issuer: "Lehelchatbot.#{Mix.env}",
+  ttl: {30, :days},
+  verify_issuer: true,
+  serializer: Lehelchatbot.GuardianSerializer,
+  secret_key: to_string(Mix.env) <> "SuPerseCret_aBraCadabrA"
+
 config :lehelchatbot, ecto_repos: [Lehelchatbot.Repo]
 
 config :phoenix, :stacktrace_depth, 20
+
+
+config :phoenix_oauth2_mock_server, PhoenixOauth2MockServer.Endpoint,
+http: [port: 4000],
+https: [port: 4443,
+        otp_app: :phoenix_oauth2_mock_server,
+        keyfile: "priv/keys/localhost.key",
+        certfile: "priv/keys/localhost.cert"],
+debug_errors: true,
+code_reloader: true,
+check_origin: false,
+watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
+
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,

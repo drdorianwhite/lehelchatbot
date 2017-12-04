@@ -20,7 +20,7 @@ defmodule Lehelchatbot.Mixfile do
   def application do
     [
       mod: {Lehelchatbot, []},
-      extra_applications: [:logger]
+      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :comeonin]
     ]
   end
 
@@ -40,7 +40,10 @@ defmodule Lehelchatbot.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:guardian, "~> 0.12.0"},
+      {:comeonin, "~> 2.5"},
+      {:poison, "~> 3.1"},
     ]
   end
 

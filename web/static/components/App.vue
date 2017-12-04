@@ -13,24 +13,29 @@
               <comment v-for="comment in comments" :comment="comment" :key="comment.id"></comment>
           </ul>
         </div>
-
-        <comment-form v-on:commented="updateComment"></comment-form>
+         
+        <div v-if="this.user && this.user.authenticated">
+          <comment-form v-on:commented="updateComment"></comment-form>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
-
+import auth from '../js/auth/'
 import Comment from './Comment.vue'
 import CommentForm from './CommentForm.vue'
 
 export default {
 
+  
+
     data () {
       return {
         question: 'What you think about Vue.js',
         comments: [],
-        loading: false
+        loading: false,
+        user: {}
       }
     },
 
@@ -38,6 +43,10 @@ export default {
       Comment,
       CommentForm
     },
+
+    beforeCreate(){
+    auth.currentUser(this)
+  },
 
     created () {
         console.log("creating app component");

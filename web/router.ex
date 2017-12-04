@@ -1,6 +1,13 @@
 defmodule Lehelchatbot.Router do
   use Lehelchatbot.Web, :router
 
+  pipeline :api_auth do
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.EnsureAuthenticated, handler: Lehelchatbot.AuthController
+    plug Guardian.Plug.LoadResource
+  end
+
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -16,18 +23,27 @@ defmodule Lehelchatbot.Router do
   scope "/api/v1", Lehelchatbot do
     pipe_through :api
 
+    post "/session/", SessionController, :create
+    delete "/session/", SessionController, :delete
+
     get "/comments", CommentController, :index
     get "/comments/:id", CommentController, :show
+
+    post "/comments/dialogflow", DialogflowControler, :response
+
+    
+
+    pipe_through :api_auth
+
+    post "/comments", CommentController, :create
+
+    get "/current_user/", CurrentUserController, :show
   end
 
   scope "/", Lehelchatbot do
-    pipe_through :browser # Use the default browser stack
-
+    pipe_through [:browser]
+    
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Lehelchatbot do
-  #   pipe_through :api
-  # end
 end

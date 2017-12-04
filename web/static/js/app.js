@@ -21,6 +21,7 @@ console.log('vue started!');
 var x = Vue.use(VueResource);
 console.log(x);
 
+
 var vue = new Vue({
   el: '#app',
   render: h => h(App)
