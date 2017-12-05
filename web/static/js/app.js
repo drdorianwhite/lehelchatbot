@@ -51,7 +51,7 @@ const afterAuth = (_to, from, next) => {
 // 2. Define some routes
 var routes = [{
     name: 'home',
-    title: 'Comments',
+    title: 'HOme',
     path: '/site/home/',
     component: Home
 }, {
@@ -61,6 +61,7 @@ var routes = [{
     component: Login
 }, {
     name: 'signup',
+    title: 'Signup',
     path: '/site/signup/',
     component: Signup
 }];
