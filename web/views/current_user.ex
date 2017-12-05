@@ -1,4 +1,4 @@
-defmodule Lehelchatbot.SessionView do
+defmodule Lehelchatbot.CurrentUserView do
     use Lehelchatbot.Web, :view
 
         def render("show.json", %{jwt: jwt, user: user}) do
@@ -8,6 +8,6 @@ defmodule Lehelchatbot.SessionView do
           }
         end
 
-    end
+    
 
 end

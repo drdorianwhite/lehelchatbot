@@ -14,20 +14,23 @@
 import "phoenix_html"
 import Vue from 'vue'
 import App from '../components/App.vue'
+
 import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
+import { router } from './router'
 
-console.log('vue started!');
+Vue.use(VueRouter)
 
-var x = Vue.use(VueResource);
-console.log(x);
+Vue.use(VueResource)
+
+
+
 
 
 var vue = new Vue({
   el: '#app',
+  router,
   render: h => h(App)
 });
-
-console.log(vue);
-
 
 Vue.http.options.emulateJSON = true;

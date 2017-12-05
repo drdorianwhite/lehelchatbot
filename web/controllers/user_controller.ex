@@ -29,18 +29,4 @@ defmodule Lehelchatbot.UserController do
                 render(conn, "new.html", changeset: changeset)
          end
     end
-
-    def login(conn, username, given_pass) do
-        user = Repo.get_by(User, username: username)
-    
-        cond do
-          user && checkpw(given_pass, user.password_hash) ->
-            {:ok, login(conn, user)}
-          user ->
-            {:error, :unauthorized, conn}
-          true ->
-            dummy_checkpw
-            {:error, :not_found, conn}
-        end
-      end
-  end
+end

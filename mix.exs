@@ -44,6 +44,7 @@ defmodule Lehelchatbot.Mixfile do
       {:guardian, "~> 0.12.0"},
       {:comeonin, "~> 2.5"},
       {:poison, "~> 3.1"},
+      {:basic_auth, "~> 2.2"},
     ]
   end
 

@@ -5,10 +5,10 @@ defmodule Lehelchatbot.Auth do
     alias Lehelchatbot.Repo
 
   
-    def authenticate(%{"username" => username, "password" => given_pass})) do
+    def authenticate(%{"username" => username, "password" => given_pass}) do
       user = Repo.get_by(User, username: username)
   
-      case  do
+      cond  do
         user && checkpw(given_pass, user.password_hash) ->
           {:ok, user}
         user ->

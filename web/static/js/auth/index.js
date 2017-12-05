@@ -4,7 +4,7 @@ process.env.NODE_ENV === 'production'
 : {SCHEME: 'http', HOSTNAME: 'localhost:4001'}
 
 const API_URL = `${SCHEME}://${HOSTNAME}/v1/api`
-const REGISTRATION_URL = `${API_URL}/registrations/`
+const REGISTRATION_URL = `${API_URL}/users/`
 const SESSION_URL = `${API_URL}/sessions/`
 const CURRENT_USER_URL = `${API_URL}/current_user/`
 

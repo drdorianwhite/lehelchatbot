@@ -4,6 +4,11 @@ use Mix.Config
 
 config :lehelchatbot, Lehelchatbot.Endpoint,
 http: [port: 4001],
+http: [port: 4000],
+https: [port: 4443,
+        otp_app: :lehelchatbot,
+        keyfile: "priv/keys/localhost.key",
+        certfile: "priv/keys/localhost.cert"],
 debug_errors: true,
 code_reloader: true,
 check_origin: false,
@@ -31,17 +36,11 @@ config :lehelchatbot, ecto_repos: [Lehelchatbot.Repo]
 
 config :phoenix, :stacktrace_depth, 20
 
-
-config :phoenix_oauth2_mock_server, PhoenixOauth2MockServer.Endpoint,
-http: [port: 4000],
-https: [port: 4443,
-        otp_app: :phoenix_oauth2_mock_server,
-        keyfile: "priv/keys/localhost.key",
-        certfile: "priv/keys/localhost.cert"],
-debug_errors: true,
-code_reloader: true,
-check_origin: false,
-watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
+config :lehelchatbot, dialogflow: [
+  username: "chatbot",
+  password: "insecure123",
+  realm: "dialogflow webhook"
+]
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

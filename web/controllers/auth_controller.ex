@@ -7,7 +7,7 @@ defmodule Lehelchatbot.AuthController do
     plug :scrub_params, "session" when action in ~w(create)a
 
 
-    def create(conn, %{"session" => session_params}}) do
+    def create(conn, %{"session" => session_params}) do
 
         case Lehelchatbot.Auth.authenticate(session_params) do
             {:ok, user} ->

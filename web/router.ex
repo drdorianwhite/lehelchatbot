@@ -26,6 +26,8 @@ defmodule Lehelchatbot.Router do
     post "/session/", SessionController, :create
     delete "/session/", SessionController, :delete
 
+    post "/users/", UserController, :create
+
     get "/comments", CommentController, :index
     get "/comments/:id", CommentController, :show
 

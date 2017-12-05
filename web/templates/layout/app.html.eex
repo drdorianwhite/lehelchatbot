@@ -8,34 +8,16 @@
     <meta name="author" content="">
 
     <title>Hello Lehelchatbot!</title>
+    <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
   <header class="header">
-  <nav role="navigation">
-    <ul class="nav nav-pills pull-right">
-      <%= if @current_user do %>
-      <li><%= @current_user.username %> (<%= @current_user.id %>)</li>
-      <li>
-        <%= link "Sign out", to: session_path(@conn, :delete,
-                                              @current_user),
-                            method: "delete" %>
-      </li>
-    <% else %>
-      <li><%= link "Register", to: user_path(@conn, :new) %></li>
-      <li><%= link "Sign in", to: session_path(@conn, :new) %></li>
-    <% end %>
-    </ul>
-  </nav>
   <span class="logo"></span>
 </header>
-      <!-- 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
-      -->
     <div id="app"></div>
+    
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

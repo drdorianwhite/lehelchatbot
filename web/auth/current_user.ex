@@ -8,4 +8,4 @@ defmodule Lehelchatbot.CurrentUser do
       current_user = current_resource(conn)
       assign(conn, :current_user, current_user)
     end
-  end
+end
