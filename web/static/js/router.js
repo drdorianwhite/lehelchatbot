@@ -27,9 +27,9 @@ export const router = new VueRouter({
   mode: 'history',
   base: '/',
   routes: [
-    { path: '/', component: Home },
-    { path: '/login', component: Login, beforeEnter: afterAuth },
-    { path: '/signup', component: Signup, beforeEnter: afterAuth },
+    { path: '/site/', component: Home },
+    { path: '/sitem/login', component: Login, beforeEnter: afterAuth },
+    { path: '/site/signup', component: Signup, beforeEnter: afterAuth },
     { path: '*', redirect: '/' }
   ]
 })

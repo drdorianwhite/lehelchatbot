@@ -1,6 +1,7 @@
 defmodule Lehelchatbot.Router do
   use Lehelchatbot.Web, :router
 
+
   pipeline :api_auth do
     plug Guardian.Plug.VerifyHeader, realm: "Bearer"
     plug Guardian.Plug.EnsureAuthenticated, handler: Lehelchatbot.AuthController
@@ -24,7 +25,6 @@ defmodule Lehelchatbot.Router do
     pipe_through :api
 
     post "/session/", SessionController, :create
-    delete "/session/", SessionController, :delete
 
     post "/users/", UserController, :create
 
@@ -39,13 +39,32 @@ defmodule Lehelchatbot.Router do
 
     post "/comments", CommentController, :create
 
+    delete "/session/", SessionController, :delete
+
     get "/current_user/", CurrentUserController, :show
+  end
+
+  scope "/site", Lehelchatbot do
+    pipe_through [:browser]
+    
+    get "/", PageController, :index
+    get "/*path", PageController, :index
   end
 
   scope "/", Lehelchatbot do
     pipe_through [:browser]
-    
-    get "/", PageController, :index
+
+    get "/", RedirectController, :redirector
   end
 
 end
+
+defmodule Lehelchatbot.RedirectController do
+  use Lehelchatbot.Web, :controller
+  @send_to "/site"
+  
+  def redirector(conn, _params), do: redirect(conn, to: @send_to)
+
+end
+
+

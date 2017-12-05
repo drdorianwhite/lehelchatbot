@@ -4,12 +4,6 @@
       <form class="register-form" @submit.prevent="signup()">
       <input
         type="text"
-        placeholder="Enter your full name"
-        v-model="credentials.name"
-      />
-      <p class="field-message" v-if="errors.name">{{ errors.name }}</p>
-      <input
-        type="text"
         placeholder="Enter your username"
         v-model="credentials.username"
       />
@@ -35,7 +29,6 @@ export default {
   data() {
     return {
       credentials: {
-        name: '',
         username: '',
         password: ''
       },

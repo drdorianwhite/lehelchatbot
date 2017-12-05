@@ -13,6 +13,10 @@ defmodule Lehelchatbot.User do
   @required_fields ~w(username password)
   @optional_fields ~w()
 
+  def get_by_username(username) do
+    Repo.get_by(User, username: username)
+  end
+
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """

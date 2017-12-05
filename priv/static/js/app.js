@@ -15004,6 +15004,19 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 })()}
 });
 
+;require.register("web/static/components/Nav.vue", function(exports, require, module) {
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68c18232", __vue__options__)
+  } else {
+  }
+})()}
+});
+
 ;require.register("web/static/components/Signup.vue", function(exports, require, module) {
 ;(function(){
 'use strict';
@@ -15026,7 +15039,6 @@ exports.default = {
   data: function data() {
     return {
       credentials: {
-        name: '',
         username: '',
         password: ''
       },
@@ -15044,7 +15056,7 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"login-page"},[_c('div',{staticClass:"form"},[_c('form',{staticClass:"register-form",on:{"submit":function($event){$event.preventDefault();_vm.signup()}}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.credentials.name),expression:"credentials.name"}],attrs:{"type":"text","placeholder":"Enter your full name"},domProps:{"value":(_vm.credentials.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.credentials, "name", $event.target.value)}}}),_vm._v(" "),(_vm.errors.name)?_c('p',{staticClass:"field-message"},[_vm._v(_vm._s(_vm.errors.name))]):_vm._e(),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.credentials.username),expression:"credentials.username"}],attrs:{"type":"text","placeholder":"Enter your username"},domProps:{"value":(_vm.credentials.username)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.credentials, "username", $event.target.value)}}}),_vm._v(" "),(_vm.errors.username)?_c('p',{staticClass:"field-message"},[_vm._v(_vm._s(_vm.errors.username))]):_vm._e(),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.credentials.password),expression:"credentials.password"}],attrs:{"type":"password","placeholder":"Enter your password"},domProps:{"value":(_vm.credentials.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.credentials, "password", $event.target.value)}}}),_vm._v(" "),(_vm.errors.password)?_c('p',{staticClass:"field-message"},[_vm._v(_vm._s(_vm.errors.password))]):_vm._e(),_vm._v(" "),_c('button',{attrs:{"type":"submit"}},[_vm._v("Signup")]),_vm._v(" "),_c('p',{staticClass:"message"},[_vm._v("\n      Already registered? "),_c('router-link',{attrs:{"to":"login"}},[_vm._v("Login")])],1)])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"login-page"},[_c('div',{staticClass:"form"},[_c('form',{staticClass:"register-form",on:{"submit":function($event){$event.preventDefault();_vm.signup()}}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.credentials.username),expression:"credentials.username"}],attrs:{"type":"text","placeholder":"Enter your username"},domProps:{"value":(_vm.credentials.username)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.credentials, "username", $event.target.value)}}}),_vm._v(" "),(_vm.errors.username)?_c('p',{staticClass:"field-message"},[_vm._v(_vm._s(_vm.errors.username))]):_vm._e(),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.credentials.password),expression:"credentials.password"}],attrs:{"type":"password","placeholder":"Enter your password"},domProps:{"value":(_vm.credentials.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.credentials, "password", $event.target.value)}}}),_vm._v(" "),(_vm.errors.password)?_c('p',{staticClass:"field-message"},[_vm._v(_vm._s(_vm.errors.password))]):_vm._e(),_vm._v(" "),_c('button',{attrs:{"type":"submit"}},[_vm._v("Signup")]),_vm._v(" "),_c('p',{staticClass:"message"},[_vm._v("\n      Already registered? "),_c('router-link',{attrs:{"to":"login"}},[_vm._v("Login")])],1)])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -15053,7 +15065,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-17ab5059", __vue__options__)
   } else {
-    hotAPI.reload("data-v-17ab5059", __vue__options__)
+    hotAPI.rerender("data-v-17ab5059", __vue__options__)
   }
 })()}
 });
@@ -15253,7 +15265,7 @@ var afterAuth = function afterAuth(_to, from, next) {
 var router = exports.router = new _vueRouter2.default({
   mode: 'history',
   base: '/',
-  routes: [{ path: '/', component: _CommentBox2.default }, { path: '/login', component: _Login2.default, beforeEnter: afterAuth }, { path: '/signup', component: _Signup2.default, beforeEnter: afterAuth }, { path: '*', redirect: '/' }]
+  routes: [{ path: '/site/', component: _CommentBox2.default }, { path: '/sitem/login', component: _Login2.default, beforeEnter: afterAuth }, { path: '/site/signup', component: _Signup2.default, beforeEnter: afterAuth }, { path: '*', redirect: '/' }]
 });
 
 });
