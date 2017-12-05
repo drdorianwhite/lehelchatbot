@@ -4,6 +4,10 @@ defmodule Lehelchatbot.UserController do
     alias Lehelchatbot.User
 
     plug :scrub_params, "user" when action in [:create]
+
+    def get_by_username(username) do
+        Repo.get_by(User, username: username)
+    end
   
     def show(conn, %{"id" => id}) do
       user = Repo.get!(User, id)
@@ -22,7 +26,7 @@ defmodule Lehelchatbot.UserController do
         case User.create(changeset, Lehelchatbot.Repo) do
             {:ok, user} ->
                 conn    
-                |> Lehelchatbat.Auth.authenticate(user)
+                |> Lehelchatbot.AuthController.create_session(user_params)
                 |> put_flash(:info, "#{user.username} created!")
                 |> redirect(to: user_path(conn, :show, user))
             {:error, changeset} ->

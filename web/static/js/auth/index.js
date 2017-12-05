@@ -35,10 +35,6 @@ currentUser (context) {
     }, _ => {
       window.localStorage.removeItem('id_token')
       this.user.authenticated = false
-      context.$router.push({
-        path: '/login',
-        query: {redirect: context.$route.fullPath}
-      })
     })
 },
 
@@ -62,7 +58,7 @@ logout (context, options) {
     .then(data => {
       window.localStorage.removeItem('id_token')
       this.user.authenticated = false
-      context.$router.push({path: '/login'})
+      context.$router.push('/')
     }, error => {
       console.log(error.message)
     })

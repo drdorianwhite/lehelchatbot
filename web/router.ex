@@ -61,7 +61,7 @@ end
 
 defmodule Lehelchatbot.RedirectController do
   use Lehelchatbot.Web, :controller
-  @send_to "/site"
+  @send_to "/site/"
   
   def redirector(conn, _params), do: redirect(conn, to: @send_to)
 

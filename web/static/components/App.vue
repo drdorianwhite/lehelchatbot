@@ -1,15 +1,15 @@
 
 <template>
 <div>
+<nav-bar></nav-bar>
  <router-view></router-view >
- <comment-box></comment-box>
- </div>
+</div>
 </template>
 
 <script>
 
 import auth from '../js/auth/'
-import CommentBox from './CommentBox.vue'
+import NavBar from './NavBar'
 
 export default {
     data () {
@@ -17,12 +17,10 @@ export default {
         comments: [],
         loading: false,
         user: {},
-        test: "hello"
       }
     },
-
     components: {
-      CommentBox
+      'nav-bar':NavBar
     },
 
     beforeCreate(){

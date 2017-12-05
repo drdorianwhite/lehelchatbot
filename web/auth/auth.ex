@@ -5,16 +5,17 @@ defmodule Lehelchatbot.Auth do
     alias Lehelchatbot.Repo
 
   
-    def authenticate(%{"username" => username, "password" => given_pass}) do
+    def authenticate(username, given_pass) do
       user = Repo.get_by(User, username: username)
   
       cond  do
         user && checkpw(given_pass, user.password_hash) ->
-          {:ok, user}
+            { :ok, jwt, _ } = Guardian.encode_and_sign(user, :token)
+            {:ok, jwt, user}
         user ->
           {:error, :unauthorized}
         true ->
-          dummy_checkpw
+          dummy_checkpw()
           {:error, :not_found}
       end
     end

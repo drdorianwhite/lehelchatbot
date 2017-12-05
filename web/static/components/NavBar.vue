@@ -21,10 +21,25 @@
 <script>
 export default {
     data() {
-      return { checked: false, title: 'Check me' }
+      return { name: 'nav-bar',checked: false, title: 'Check me' }
     },
     methods: {
       check() { this.checked = !this.checked; }
+    },
+    computed: {
+        routes: function () {
+            var routes = [];
+            for (var i in this.$router.options.routes) {
+                if (!this.$router.options.routes.hasOwnProperty(i)) {
+                    continue
+                }
+                var route = this.$router.options.routes[i];
+                if(route.hasOwnProperty('title')) {
+                    routes.push(route);
+                }
+            }
+            return routes;
+        }
     }
   }
 </script>

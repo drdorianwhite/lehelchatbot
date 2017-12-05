@@ -1,23 +1,19 @@
 defmodule Lehelchatbot.AuthController do
     use Lehelchatbot.Web, :controller
-    import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
     
-    alias Lehelchatbot.User
 
     plug :scrub_params, "session" when action in ~w(create)a
 
 
-    def create(conn, %{"session" => session_params}) do
+    def create_session(conn, %{"session" => session_params}) do
 
-        case Lehelchatbot.Auth.authenticate(session_params) do
-            {:ok, user} ->
-                {:ok, jwt, _full_claims} = user |> Guardian.encode_and_sign(:token)
-            
+        case Lehelchatbot.Auth.authenticate(session_params.usernmae, session_params.password) do
+            {:ok, jwt, user} ->
                 conn
                 |> put_status(:created)
                 |> render("show.json", jwt: jwt, user: user)
 
-            :error ->
+            {:error, _} ->
                 conn
                 |> put_status(:unprocessable_entity)
                 |> render("error.json")    
@@ -26,7 +22,7 @@ defmodule Lehelchatbot.AuthController do
 
     
     
-    def delete(conn, _) do
+    def delete_session(conn, _) do
         {:ok, claims} = Guardian.Plug.claims(conn)
     
         conn
