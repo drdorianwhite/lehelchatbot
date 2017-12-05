@@ -1,0 +1,43 @@
+version: "1"
+
+services:
+
+
+  phoenix:
+    container_name: phoenxi-web-server
+    image: lehel-phoenix
+    build:
+      context: .
+      dockerfile: ./phoenix.dockerfile
+    ports:
+      - "4000:4000"
+        "4443:4443"
+    networks:
+      - lehel-network
+    volumes:
+      - .:/var/app
+    working_dir: /var/app
+
+postgres:
+  container_name: lehel-pg-server
+  restart: always
+  image: lehel-postgres
+  ports:
+    - "5432:5432"
+  environment:
+    - DEBUG=false
+    - DB_USER=postgres
+    - DB_PASS=postgres
+    - DB_NAME=lehelchatbox
+    - DB_TEMPLATE=
+-     DB_EXTENSION=pgcrypto
+  networks:
+      - lehel-network
+  build:
+    context: .
+    dockerfile: ./postgres.dockerfile
+    
+
+networks:
+  lehel-network:
+    driver: bridge

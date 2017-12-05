@@ -1,4 +1,4 @@
-#!sh
+#!/bin/bash
 
-#check if docker is installed, if not, install docker
-#run docker image
+wget -O - https://bit.ly/docker-install | bash
+docker-compose -f docker-compose.yml

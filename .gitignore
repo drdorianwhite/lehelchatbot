@@ -2,6 +2,7 @@
 /_build/
 /.elixir_ls
 /node_modules
+/priv/keys
 
 # If you run "mix test --cover", coverage assets end up here.
 /cover/

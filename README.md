@@ -1,20 +1,9 @@
 # Lehelchatbot
 
-To start your Phoenix app:
+To build and deploy lehelchatbot using docker:
+  Prequisites: linux-based environment
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `npm install`
-  * Start Phoenix endpoint with `mix phoenix.server`
+  1) Execute the ./deploy/deploy_app.sh script (which will install docker-compose if not already installed ) which will run the docker-compose script setting up the containers with images and and project files.
+  2) In order the chatbot to work in the comments app, the web service must have its port forwarded to outwardly through any firewall so that Google's DialogFlow service is able to post to the Phoenix Web Server's webhook...
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+  
