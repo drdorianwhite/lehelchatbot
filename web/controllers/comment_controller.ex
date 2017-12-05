@@ -12,7 +12,7 @@ defmodule Lehelchatbot.CommentController do
     end
 
     def show(conn, %{"id" => id}) do
-        comment = Repo.get_by(Comment, id: id)
+        comment = Repo.get_by(Lehelchatbot.Comment, id: id)
         render("show.json", comment)
     end
 
@@ -30,10 +30,10 @@ defmodule Lehelchatbot.CommentController do
     def create_from_dialogflow(conn, _params) do
       
       if  conn.body_params && conn.body_params.displayText do
-          botUser = User.get_by_username("chatbot")
-          create(conn,  %Comment{user_id: botUser.id, message: conn.body_params.displayText})
+          botUser = Lehelchatbot.User.get_by_username("chatbot")
+          create(conn,  %Lehelchatbot.Comment{user_id: botUser.id, message: conn.body_params.displayText})
       else
-          json conn
+          render('error.json', %{})
       end
     end
      
