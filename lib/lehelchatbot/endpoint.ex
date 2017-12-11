@@ -22,6 +22,10 @@ defmodule Lehelchatbot.Endpoint do
   plug Plug.RequestId
   plug Plug.Logger
 
+  if Application.get_env(:lehelchatbot, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
+
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
@@ -29,6 +33,8 @@ defmodule Lehelchatbot.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
+
+  plug Corsica, origins: ["http://localhost:4000", "https://localhost:4443"]
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.

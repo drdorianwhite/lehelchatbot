@@ -1,11 +1,13 @@
 defmodule Lehelchatbot.AuthController do
     use Lehelchatbot.Web, :controller
+
+    alias Lehelchatbot.Guardian
     
 
     plug :scrub_params, "session" when action in ~w(create)a
 
 
-    def create_session(conn, %{"session" => session_params}) do
+    def create_authtoken(conn, %{"session" => session_params}) do
 
         case Lehelchatbot.Auth.authenticate(session_params.usernmae, session_params.password) do
             {:ok, jwt, user} ->
@@ -22,14 +24,10 @@ defmodule Lehelchatbot.AuthController do
 
     
     
-    def delete_session(conn, _) do
-        {:ok, claims} = Guardian.Plug.claims(conn)
-    
+    def delete_authtoken(conn, _) do
         conn
         |> Guardian.Plug.current_token
-        |> Guardian.revoke!(claims)
-    
-        conn
+        |> Guardian.revoke
         |> render("delete.json")
     end
     

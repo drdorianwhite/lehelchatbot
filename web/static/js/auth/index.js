@@ -1,7 +1,7 @@
 const { SCHEME, HOSTNAME } =
 process.env.NODE_ENV === 'production'
 ? {SCHEME: 'https', HOSTNAME: window.location.hostname}
-: {SCHEME: 'http', HOSTNAME: 'localhost:4001'}
+: {SCHEME: 'http', HOSTNAME: 'localhost:4000'}
 
 const API_URL = `${SCHEME}://${HOSTNAME}/v1/api`
 const REGISTRATION_URL = `${API_URL}/users/`

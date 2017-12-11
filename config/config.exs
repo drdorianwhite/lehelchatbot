@@ -3,14 +3,13 @@
 use Mix.Config
 
 config :lehelchatbot, Lehelchatbot.Endpoint,
-http: [port: 4001],
 http: [port: 4000],
 https: [port: 4443,
         otp_app: :lehelchatbot,
         keyfile: "priv/keys/localhost.key",
         certfile: "priv/keys/localhost.cert"],
 debug_errors: true,
-code_reloader: true,
+code_reloader: false,
 check_origin: false,
 secret_key_base: "SuPerseCret_aBraCadabrASuPerseCret_aBraCadabrASuPerseCret_aBraCadabrASuPerseCret_aBraCadabrA",
 watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
@@ -24,13 +23,15 @@ config :lehelchatbot, Lehelchatbot.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost"
+  port: "5439"
 
-  config :guardian, Guardian,
-  issuer: "Lehelchatbot.#{Mix.env}",
+  config :lehelchatbot, Guardian,
+  allowed_algos: ["HS512", "HS384"],
+  issuer: "Lehelchatbot",
   ttl: {30, :days},
   verify_issuer: true,
-  serializer: Lehelchatbot.GuardianSerializer,
-  secret_key: to_string(Mix.env) <> "SuPerseCret_aBraCadabrA"
+  module: Lehelchatbot.Guardian,
+  secret_key:  "SuPerseCret_aBraCadabrA"
 
 config :lehelchatbot, ecto_repos: [Lehelchatbot.Repo]
 
@@ -67,8 +68,7 @@ config :lehelchatbot, dialogflow: [
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
 #
-#     import_config "#{Mix.env}.exs"
-
+import_config "#{Mix.env}.exs"
 
 
 

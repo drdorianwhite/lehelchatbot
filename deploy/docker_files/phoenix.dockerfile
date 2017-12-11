@@ -9,6 +9,11 @@ WORKDIR ./priv/keys
 RUN openssl genrsa -out localhost.key 2048
 RUN openssl req -new -x509 -key localhost.key -out localhost.cert -days 3650 -subj /CN=localhost
 WORKDIR /code/lehelchatbot
-RUN mix deps.get
+RUN mix local.hex --force
+RUN mix deps.get --only-prod
+RUN mix compile
 RUN npm install
+RUN node_modules/brunch/bin/brunch build
+#CMD ["mix", "phoenix.server"]
+
 

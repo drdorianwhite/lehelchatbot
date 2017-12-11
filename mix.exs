@@ -20,7 +20,7 @@ defmodule Lehelchatbot.Mixfile do
   def application do
     [
       mod: {Lehelchatbot, []},
-      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :comeonin]
+      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :comeonin, :guardian, :corsica]
     ]
   end
 
@@ -35,16 +35,18 @@ defmodule Lehelchatbot.Mixfile do
     [
       {:phoenix, "~> 1.3.0-rc"},
       {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_ecto, "~> 3.2"},
+      {:phoenix_ecto, "~> 3.3"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
-      {:guardian, "~> 0.12.0"},
-      {:comeonin, "~> 2.5"},
+      {:gettext, "~> 0.13"},
+      {:cowboy, "~> 1.1"},
+      {:guardian, "~> 1.0.0"},
+      {:comeonin, "~> 2.6"},
       {:poison, "~> 3.1"},
       {:basic_auth, "~> 2.2"},
+      {:hound, "~> 1.0"},
+      {:corsica, "~> 1.0"},
     ]
   end
 
@@ -61,4 +63,6 @@ defmodule Lehelchatbot.Mixfile do
       "test": ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
+
 end
+

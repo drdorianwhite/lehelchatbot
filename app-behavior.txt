@@ -1,0 +1,15 @@
+required behavior:
+
+0)app running
+1)clear ui of comments, login, register, hasauth, comment input
+2) login -> hasauth
+3) register -> hasauth or register/invalid -> error
+4) comments/valid
+5) comment input/valid -> comments/valid
+6) deploy/run -> to 1-5
+
+
+
+current behavior:
+
+0) app runs
