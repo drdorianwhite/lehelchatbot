@@ -22,7 +22,7 @@ config :lehelchatbot, Lehelchatbot.Repo,
   database: "lehelchatbot",
   username: "postgres",
   password: "postgres",
-  hostname: "localhost",
+  hostname: "postgres",
   port: "5439"
 
   config :lehelchatbot, Guardian,
