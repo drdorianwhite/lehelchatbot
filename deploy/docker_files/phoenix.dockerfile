@@ -14,6 +14,7 @@ RUN mix deps.get --only-prod
 RUN mix compile
 RUN npm install
 RUN node_modules/brunch/bin/brunch build
+RUN mix phoenix.server
 #CMD ["mix", "phoenix.server"]
 
 
