@@ -15,7 +15,7 @@ services:
     volumes:
      - .:/code/lehelchatbot
      - .:/code/lehelchatbot/node_modules
-    command: sh -c './wait-for postgres:5432 -- mix phoenix.server'
+    command: ['./wait-for-pg.sh', 'postgres', 'mix', 'phoenix.server']
     depends_on:
       - postgres
 
